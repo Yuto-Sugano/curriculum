@@ -13,3 +13,13 @@ Switch3  E0/1　DP　ルートブリッジのすべてのポートは指定ポ�
 
 Switch4  E0/1　DP　switch2に比べてプライオリティ値が小さいのでこっちが指定ポートになる
          E0/2　RP ルートポートの対向ポートは指定ポートになる
+
+問２プライオリティ値が最も小さいswitch3がルートブリッジになる。
+ルートブリッジはパスコスト０でBPDUを送信する。非ルートブリッジのswitch1とswitch2、switch4では受信したBPDUのパスコストに自身のコスト値を加算する。switch1のF0/2では19+0=19、switch4のE0/2では0+100=100。switch1のF0/1とswitch2のF0/1は19+19=38。switch2のF0/2とswitch4のE0/1では19+100=119。
+ルートポートRPはswitch1のF0/2、switch4のE0/2、switch2のF0/1の3つ
+
+
+今回switch1と2、switch2と4、switch4と3、switch3と1の4つのセグメントがある。各セグメント毎に1つ指定ポートDPが選出される。ルートブリッジのポートは全てDPとなる。switch1と2、switch
+2と4間でのセグメントのDPは、各switchのRPのルートパスコストが小さいほうが指定される。よってswitch1のF0/1、switch2のF0/2とswitch3の両方のポートの全4つが指定ポートになる。
+
+残りがNDPになる。switch4のE0/1が非指定ポートになる
